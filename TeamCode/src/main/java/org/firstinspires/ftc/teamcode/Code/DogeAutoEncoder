@@ -333,6 +333,20 @@ public class dogeAuto4 extends LinearOpMode {
             backR.setPower(-power);
             backL.setPower(power);
     }
+    public void right(double power)
+    {
+            frontL.setPower(-power);
+            frontR.setPower(-power);
+            backR.setPower(-power);
+            backL.setPower(-power);
+    }
+    public void left(double power)
+    {
+            frontL.setPower(power);
+            frontR.setPower(power);
+            backR.setPower(power);
+            backL.setPower(power);
+    }
     public int convInchToTicks(double inches)
     {
       //Note: one revolution is 1440 ticks and 1 rev is 11.873 inch ==> so easy conversion from inches to ticks
@@ -375,7 +389,7 @@ public class dogeAuto4 extends LinearOpMode {
       
       
     }
-     public void goUp(int power, int ticks) //NOTE: THIS DISTANCE IS IN INCHES
+     public void goDown(int power, int ticks) //NOTE: THIS DISTANCE IS IN INCHES
     {
       frontL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
       frontR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
@@ -410,6 +424,79 @@ public class dogeAuto4 extends LinearOpMode {
       backL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
       backR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
       
+      
+    }
+    public void goRight(int power, int ticks) //NOTE: THIS DISTANCE IS IN INCHES
+    {
+      frontL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      frontR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      backL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      backR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      
+      frontL.setTargetPosition(ticks);
+      frontR.setTargetPosition(ticks);
+      backL.setTargetPosition(ticks);
+      backR.setTargetPosition(ticks);
+      
+      frontL.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+      frontR.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+      backL.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+      backR.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+       
+       
+       /**
+      frontL
+      frontR
+      backL
+      backR
+       
+       **/
+      right(power);
+      while(frontL.isBusy() &&  frontR.isBusy() && backL.isBusy() &&  backR.isBusy())
+      {//Nothing to do here}
+      
+      stop();
+      frontL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+      frontR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+      backL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+      backR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+      
+      
+    }
+    public void goLeft(double power)// edit this part to send the amount of ticks after the yellow block was found ==> an int
+    {
+        frontL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      frontR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      backL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      backR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+      
+      frontL.setTargetPosition(ticks);
+      frontR.setTargetPosition(ticks);
+      backL.setTargetPosition(ticks);
+      backR.setTargetPosition(ticks);
+      
+      frontL.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+      frontR.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+      backL.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+      backR.setMode(DcMotorController.RunMode.RUN_TO_POSITION); 
+       
+       
+       /**
+      frontL
+      frontR
+      backL
+      backR
+       
+       **/
+      left(power);
+      while(frontL.isBusy() &&  frontR.isBusy() && backL.isBusy() &&  backR.isBusy())
+      {//Nothing to do here}
+      
+      stop();
+      frontL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+      frontR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+      backL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+      backR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
       
     }
     
