@@ -127,10 +127,12 @@ public class dogeAuto4 extends LinearOpMode {
             if(bool1)
             {
 
-                double timeRight = rotateRight(1.12, .15);
-
-
-                    double timeLeft = rotateLeft(4, .14);
+                double timeRight = rotateRight(1.12, .14);
+                timeLeft = 0;
+                   if(isAligned == false)
+                   {
+                        double timeLeft = rotateLeft(4, .14);
+                   }
 
 
                 double totalTime = timeRight + timeLeft;
